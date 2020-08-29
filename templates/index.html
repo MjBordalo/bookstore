@@ -7,7 +7,7 @@
 {% block body %}
 <div class="content">
 
-    <h2 style="text-align: center">Alugar mais um livro</h2>
+    <h2 style="text-align: center">Alugar mais um livro </h2>
     <div class="form">
         <form action="/" method="POST">
             Seleccione um livro:
@@ -39,6 +39,7 @@
             <th>Tipo</th>
             <th>Dia Levantamento</th>
             <th>Dia Devolução</th>
+            <th>Preco a pagar</th>
             <th>Actions</th>
         </tr>
         {% for task in tasks %}
@@ -47,6 +48,7 @@
                 <td>{{ task.book_type }}</td>
                 <td>{{ task.DateTake.date() }}</td>
                 <td>{{ task.DateReturn.date() }}</td>
+                <td>{{ compute_price1(task.DateTake.date() ,task.DateReturn.date())  }}</td>
                 <td>
                     <a href="/delete/{{task.id}}">Delete</a>
 <!--                    <br>-->

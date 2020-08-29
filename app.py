@@ -2,6 +2,9 @@ from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+import rent_price
+from rent_price import *
+
 app = Flask(__name__)
 
 #init db
@@ -37,6 +40,9 @@ class Books(db.Model):
     def __repr__(self):
         return '<Book %r>' % self.id
 
+def experiencia():
+    return "BLABLABLA"
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
@@ -48,6 +54,8 @@ def index():
         book_name= request.form['bookDropdown']
         book_type= books[book_name]["type"]
 
+        rent_price = compute_price1(DateTake,DateReturn)
+        print(rent_price)
         new_task = Todo(content=book_name,book_type=book_type, DateTake=DateTake,DateReturn=DateReturn)
 
         # try:
@@ -64,7 +72,7 @@ def index():
         # except:
         #     tasks=[]
 
-        return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"))
+        return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"), compute_price1=compute_price1)
 
 @app.route('/delete/<int:id>')
 def delete(id):
