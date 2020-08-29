@@ -7,28 +7,33 @@
 {% block body %}
 <div class="content">
 
-    <h1 style="text-align: center">Task Master</h1>
+    <h2 style="text-align: center">Alugar mais um livro</h2>
     <div class="form">
         <form action="/" method="POST">
+            Seleccione um livro:
             <select class="bookForm" id="bookDropdown" type="text" name="bookDropdown" >
 <!--                <option disabled selected>Select a book</option>-->
                 {% for book in books %}
-                <option id={{book}} value={{book}}>{{book}}</option>
+                <option id={{book}} value="{{book}}">{{book}}</option>
 
                 {% endfor %}
            </select>
             <br>
-            <input type="text"  name="content" id="content" placeholder="Select A Team">
-            <input type="date" placeholder="Date Take" name="DateTake" id="DateTake">
-            <input type="date" name="DateReturn" id="DateReturn">
-            <input type="submit" value="Alugar">
+            Seleccione a data de recolha:
+<!--            <input type="text"  name="content" id="content" placeholder="Select A Team">-->
+            <input type="date"  name="DateTake" id="DateTake" value ="{{today}}">
+             <br>
+            Seleccione a data de entrega:
+            <input type="date" name="DateReturn" id="DateReturn" value ="{{today}}">
+            <input type="submit" value="Alugar" >
         </form>
     </div>
     <br>
     {% if tasks|length < 1 %}
-    <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+    <h4 style="text-align: center">Sem livros alugados</h4>
     {% else %}
     <table>
+        <h2 style="text-align: center">Livros Alugados:</h2>
         <tr>
             <th>Livro</th>
             <th>Tipo</th>
@@ -44,8 +49,8 @@
                 <td>{{ task.DateReturn.date() }}</td>
                 <td>
                     <a href="/delete/{{task.id}}">Delete</a>
-                    <br>
-                    <a href="/update/{{task.id}}">Update</a>
+<!--                    <br>-->
+<!--                    <a href="/update/{{task.id}}">Update</a>-->
                 </td>
             </tr>
         {% endfor %}

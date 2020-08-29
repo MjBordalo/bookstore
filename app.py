@@ -41,13 +41,13 @@ class Books(db.Model):
 def index():
     if request.method == 'POST':
 
-        task_content = request.form['content']
+        # task_content = request.form['content']
         DateTake = datetime.strptime(request.form['DateTake'], '%Y-%m-%d')
         DateReturn =datetime.strptime(request.form['DateReturn'], '%Y-%m-%d')
 
         book_name= request.form['bookDropdown']
         book_type= books[book_name]["type"]
-        print(book_type)
+
         new_task = Todo(content=book_name,book_type=book_type, DateTake=DateTake,DateReturn=DateReturn)
 
         # try:
@@ -64,7 +64,7 @@ def index():
         # except:
         #     tasks=[]
 
-        return render_template('index.html', tasks=tasks,books=books)
+        return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"))
 
 @app.route('/delete/<int:id>')
 def delete(id):
