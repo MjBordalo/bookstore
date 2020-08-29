@@ -1,0 +1,14 @@
+
+#activar db
+* na consola correr
+    from app import db
+    db.create_all()
+
+
+#um html extender outro
+{% extends 'base.html' %}
+{% block head %}{% endblock %}
+
+# ciclos python dentro de html
+ {% for book in books %}
+ {% endfor %}

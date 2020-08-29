@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+
+    <h1 style="text-align: center">Task Master</h1>
+    <div class="form">
+        <form action="/" method="POST">
+            <select class="bookForm" id="bookDropdown" type="text" name="bookDropdown" >
+<!--                <option disabled selected>Select a book</option>-->
+                {% for book in books %}
+                <option id={{book}} value={{book}}>{{book}}</option>
+
+                {% endfor %}
+           </select>
+            <br>
+            <input type="text"  name="content" id="content" placeholder="Select A Team">
+            <input type="date" placeholder="Date Take" name="DateTake" id="DateTake">
+            <input type="date" name="DateReturn" id="DateReturn">
+            <input type="submit" value="Alugar">
+        </form>
+    </div>
+    <br>
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>Livro</th>
+            <th>Tipo</th>
+            <th>Dia Levantamento</th>
+            <th>Dia Devolução</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.book_type }}</td>
+                <td>{{ task.DateTake.date() }}</td>
+                <td>{{ task.DateReturn.date() }}</td>
+                <td>
+                    <a href="/delete/{{task.id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{task.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+
+</div>
+{% endblock %}
