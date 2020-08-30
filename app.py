@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+"""app.py: Starts a webapp simulating a book renting store.Small projecto to zeev ."""
+__author__ = "Miguel Bordalo"
+
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
