@@ -59,7 +59,6 @@ def index():
         book_type= books[book_name]["type"]
 
         rent_price = compute_price1(DateTake,DateReturn)
-        print(rent_price)
         new_task = Todo(content=book_name,book_type=book_type, DateTake=DateTake,DateReturn=DateReturn)
 
         # try:
