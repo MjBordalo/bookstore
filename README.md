@@ -8,7 +8,8 @@ Mini project of o bookstore using pyhton + flask
 - [x] git
 - [x] fase 1
     - [x] unittests
-- [ ] por online
+    - [x] por online
+    - [ ] impedir d2 < d1
 - [ ] fase2
     - [ ] unittests
 - [ ] fase3

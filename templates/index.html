@@ -21,10 +21,10 @@
             <br>
             Seleccione a data de recolha:
 <!--            <input type="text"  name="content" id="content" placeholder="Select A Team">-->
-            <input type="date"  name="DateTake" id="DateTake" value ="{{today}}">
+            <input type="date"  name="DateTake" id="DateTake" value ="{{today}}" min="{{today}}">
              <br>
             Seleccione a data de entrega:
-            <input type="date" name="DateReturn" id="DateReturn" value ="{{today}}">
+            <input type="date" name="DateReturn" id="DateReturn" value ="{{today}}" min="{{today}}">
             <input type="submit" value="Alugar" >
         </form>
     </div>
@@ -56,6 +56,14 @@
                 </td>
             </tr>
         {% endfor %}
+        <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total:</td>
+                <td>{{sum_extracto}}</td>
+                <td>eur</td>
+            </tr>
     </table>
     {% endif %}
 

@@ -44,8 +44,6 @@ class Books(db.Model):
     def __repr__(self):
         return '<Book %r>' % self.id
 
-def experiencia():
-    return "BLABLABLA"
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -72,10 +70,10 @@ def index():
         #try:
         tasks = Todo.query.order_by(Todo.DateTake).all()
 
-        # except:
-        #     tasks=[]
+        sum_extracto = sum([compute_price1(task.DateTake.date() ,task.DateReturn.date()) for task in tasks])
 
-        return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"), compute_price1=compute_price1)
+
+        return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"), compute_price1=compute_price1,sum_extracto=sum_extracto)
 
 @app.route('/delete/<int:id>')
 def delete(id):
