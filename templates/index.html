@@ -48,7 +48,7 @@
                 <td>{{ task.book_type }}</td>
                 <td>{{ task.DateTake.date() }}</td>
                 <td>{{ task.DateReturn.date() }}</td>
-                <td>{{ compute_price2(task.DateTake.date() ,task.DateReturn.date(),task.book_type)  }}</td>
+                <td>{{ compute_price(task.DateTake.date() ,task.DateReturn.date(),task.book_type)  }}</td>
                 <td>
                     <a href="/delete/{{task.id}}">Delete</a>
 <!--                    <br>-->

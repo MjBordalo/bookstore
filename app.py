@@ -8,6 +8,7 @@ from datetime import datetime
 
 import rent_price
 from rent_price import *
+from contants import *
 
 app = Flask(__name__)
 
@@ -15,10 +16,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
-books = {"Ciencia impossivel":{"type":"ficcao"},
-       "Big Blang":{"type":"ficcao"},
-       "O  meu belo Romance1":{"type":"romance"},
-       "Romanticmante":{"type":"romance"},
+books = {"Ciencia impossivel":{"type":BOOK_TYPE_FICCAO},
+       "Big Blang":{"type":BOOK_TYPE_FICCAO},
+       "O  meu belo Romance1":{"type":BOOK_TYPE_ROMANCE},
+       "Romanticmante":{"type":BOOK_TYPE_ROMANCE},
+       "O livro mais normal":{"type":BOOK_TYPE_NORMAL},
          }
 
 
@@ -69,12 +71,10 @@ def index():
         #try:
         tasks = Todo.query.order_by(Todo.DateTake).all()
 
-        # sum_extracto = sum([compute_price1(task.DateTake.date() ,task.DateReturn.date()) for task in tasks])
-        sum_extracto = sum([compute_price2(task.DateTake.date() ,task.DateReturn.date(),task.book_type) for task in tasks])
+        sum_extracto = sum([compute_price(task.DateTake.date() ,task.DateReturn.date(),task.book_type) for task in tasks])
 
 
-        # return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"), compute_price1=compute_price1,sum_extracto=sum_extracto)
-        return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"), compute_price2=compute_price2,sum_extracto=sum_extracto)
+        return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"), compute_price=compute_price,sum_extracto=sum_extracto)
 
 @app.route('/delete/<int:id>')
 def delete(id):
