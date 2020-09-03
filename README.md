@@ -2,6 +2,10 @@
 Mini project of o bookstore using pyhton + flask
 
 [source code](https://github.com/MjBordalo/bookstore)
+
+## Assumption
+* caso entregue e devolva no mesmo dia não paga
+*  se levantar hoje e entregar amnha assume-se um dia de aluguer
 ## To-do
 - [x] intro flask
     - [x] db

@@ -56,7 +56,6 @@ def index():
         book_name= request.form['bookDropdown']
         book_type= books[book_name]["type"]
 
-        rent_price = compute_price1(DateTake,DateReturn)
         new_task = Todo(content=book_name,book_type=book_type, DateTake=DateTake,DateReturn=DateReturn)
 
         # try:
@@ -70,10 +69,12 @@ def index():
         #try:
         tasks = Todo.query.order_by(Todo.DateTake).all()
 
-        sum_extracto = sum([compute_price1(task.DateTake.date() ,task.DateReturn.date()) for task in tasks])
+        # sum_extracto = sum([compute_price1(task.DateTake.date() ,task.DateReturn.date()) for task in tasks])
+        sum_extracto = sum([compute_price2(task.DateTake.date() ,task.DateReturn.date(),task.book_type) for task in tasks])
 
 
-        return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"), compute_price1=compute_price1,sum_extracto=sum_extracto)
+        # return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"), compute_price1=compute_price1,sum_extracto=sum_extracto)
+        return render_template('index.html', tasks=tasks,books=books, today=datetime.today().strftime("%Y-%m-%d"), compute_price2=compute_price2,sum_extracto=sum_extracto)
 
 @app.route('/delete/<int:id>')
 def delete(id):
